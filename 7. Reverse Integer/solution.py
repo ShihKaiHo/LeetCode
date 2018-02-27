@@ -4,15 +4,5 @@ class Solution:
         :type x: int
         :rtype: int
         """
-        if x >= 0:
-            ans = int(str(x)[-1::-1])
-            if ans > 2147483647:
-                return 0
-            else:
-                return ans
-        else:
-            ans = int(str(-x)[-1::-1])
-            if ans > 2147483647:
-                return 0
-            else:
-                return -ans
+        ans = ((x>0) - (x<0))*int(str(abs(x))[::-1])
+        return ans if ans.bit_length() < 32 else 0
